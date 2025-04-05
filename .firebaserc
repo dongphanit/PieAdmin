@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "ecommere-7b5c6"
-  }
+    "default": "api-project-103523650058",
+    "staging": "api-project-103523650058"
+  },
+  "targets": {},
+  "etags": {}
 }

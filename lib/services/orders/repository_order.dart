@@ -13,31 +13,51 @@ class RepositoryOrder implements IrepositoryOrder {
     
     if (value.docs.isNotEmpty) {
       for (var element in value.docs) {
-        _orders.add(Order1.fromJson(element.data()));
+        _orders.add(Order1.fromJson({...element.data(), "id": element.id}));
       }
     }
   } catch (e) {
     print("Error fetching orders: $e");
   }
   
-  return _orders;
+  return _orders; 
+}
+  @override
+  Future<Map<String, dynamic>?> getSettings() async {
+  try {
+    DocumentSnapshot orderSnapshot = await databasereference.collection('settings').doc("discount").get();
+    
+    return orderSnapshot.data() as Map<String, dynamic>?;
+   
+  } catch (e) {
+    print("Error fetching orders: $e");
+  }
+  return null;
+  
 }
 
+  @override
+  Future<void> settingDiscount(String key, String value) async {
+        await databasereference
+            .collection('settings')
+            .doc("discount")
+            .update({"discountType": key, "discountValue": value, "lastestTime": DateTime.now().toIso8601String()});
+      }
 
   @override
   Future<void> updateOrderStatus(String orderId, String statusvalue) async {
-    await databasereference
-        .collection('orders')
-        .where('orderId', isEqualTo: orderId)
-        .get()
-        .then((value) async {
-      if (value.docs.length > 0) {
-        String docId = value.docs.first.id;
+    // // await databasereference
+    // //     .collection('orders')
+    // //     .where('orderId', isEqualTo: orderId)
+    // //     .get()
+    // //     .then((value) async {
+    // //   if (value.docs.length > 0) {
+    //     String docId = value.docs.first.id;
         await databasereference
             .collection('orders')
-            .doc(docId)
+            .doc(orderId)
             .update({'status': statusvalue});
       }
-    });
-  }
+    // });
+  // }
 }

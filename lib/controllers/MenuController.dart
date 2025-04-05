@@ -7,6 +7,7 @@ import 'package:ecommerce_admin_panel/screens/login/login_screen.dart';
 import 'package:ecommerce_admin_panel/screens/orders/orders_screen.dart';
 import 'package:ecommerce_admin_panel/screens/orders/view_order_screen.dart';
 import 'package:ecommerce_admin_panel/screens/products/products_screen.dart';
+import 'package:ecommerce_admin_panel/screens/users/users_screen.dart';
 import 'package:ecommerce_admin_panel/shared/constants.dart';
 import 'package:flutter/material.dart';
 
@@ -54,16 +55,14 @@ class MenuControllerA extends ChangeNotifier {
   final _offline_screen = [LoginScreen()];
 
   final _screens = [
-    DashboardScreen(),
     OrdersScreen(),
-    ProductScreen(),
+    UsersScreen(),
   ];
 
   final _offline_screens_title = ['Login'];
   final _screens_title = [
-    'Dashboard',
     'Orders',
-    'Products',
+    'Users',
   ];
 
   List<MenuModel> _offline_menuModelList = [
@@ -71,9 +70,8 @@ class MenuControllerA extends ChangeNotifier {
   ];
 
   List<MenuModel> _menuModelList = [
-    MenuModel("Dashboard", "assets/icons/menu_dashbord.svg", isselected: true),
     MenuModel("Orders", "assets/icons/menu_tran.svg"),
-    MenuModel("Products", "assets/icons/menu_task.svg"),
+    MenuModel("Users", "assets/icons/menu_task.svg"),
     MenuModel("Logout", "assets/icons/menu_logout.svg"),
   ];
 

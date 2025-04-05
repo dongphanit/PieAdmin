@@ -27,7 +27,6 @@ class ViewOrderScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        
       ),
       body: Padding(
         padding: const EdgeInsets.all(defaultPadding),
@@ -38,7 +37,7 @@ class ViewOrderScreen extends StatelessWidget {
             Padding(
               padding: EdgeInsets.all(defaultPadding),
               child: Container(
-                //  width: double.infinity,
+                
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [

@@ -11,6 +11,11 @@ class OrdersController extends ChangeNotifier {
   RepositoryOrder repositoryOrder = RepositoryOrder();
 
   List<Order1> allOrders = [];
+  String discountValue = "";
+  String discountType= "";
+  String lastestUpdateTime = "";
+  List<Order1> getSetting = [];
+
   bool isloadingGetAllProduct = false;
 
 // NOTE packaging
@@ -57,6 +62,16 @@ class OrdersController extends ChangeNotifier {
   List<TopSellingModel> get list_of_top_selling =>
       _list_of_topselling.take(5).toList();
   List<TopSellingModel> _list_of_topselling = [];
+
+  Future<void> getSettings() async {
+      notifyListeners();
+      Map<String, dynamic>? data = await repositoryOrder.getSettings();
+     discountType =  data?["discountType"];
+     discountValue = data?["discountValue"];
+     lastestUpdateTime = data?["lastestTime"];
+     
+      notifyListeners();
+  }
 
   Future<void> getAllorders() async {
     isloadingGetAllProduct = true;
@@ -181,11 +196,21 @@ class OrdersController extends ChangeNotifier {
     });
   }
 
+
+  Future<void> onChangeDiscount(String key, String value) async {
+     notifyListeners();
+    await repositoryOrder.settingDiscount(key, value).then((value) {
+     getSettings();
+    
+      notifyListeners();
+    });
+  }
   // NOTE onchage table view
   OrderStatus table_orderStatus = OrderStatus.all;
 
   void onchangeTableOrderStatus(OrderStatus o) {
        getAllorders();
+       
     allOrders = original_all_orders;
 
     table_orderStatus = o;

@@ -54,7 +54,7 @@ class ProfileCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: secondaryColor,
         borderRadius: const BorderRadius.all(Radius.circular(10)),
-        border: Border.all(color: Colors.white10),
+        // border: Border.all(color: Colors.white10),
       ),
       child: Consumer<AuthController>(
         builder: (context, controller, child) {

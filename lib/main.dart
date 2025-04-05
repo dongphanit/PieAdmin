@@ -3,6 +3,7 @@ import 'package:ecommerce_admin_panel/controllers/auth_controller.dart';
 import 'package:ecommerce_admin_panel/controllers/dashboard_controller.dart';
 import 'package:ecommerce_admin_panel/controllers/orders_controller.dart';
 import 'package:ecommerce_admin_panel/controllers/product_controller.dart';
+import 'package:ecommerce_admin_panel/controllers/user_controller.dart';
 import 'package:ecommerce_admin_panel/screens/main/main_screen.dart';
 import 'package:ecommerce_admin_panel/shared/constants.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -40,7 +41,13 @@ Future<void> main() async {
       create: (context) => OrdersController()..getAllorders(),
     ),
     ChangeNotifierProvider(
+      create: (context) => OrdersController()..getSettings(),
+    ),
+    ChangeNotifierProvider(
       create: (context) => ProductController()..getallProduct(),
+    ),
+     ChangeNotifierProvider(
+      create: (context) => UserController()..getAllUsers(),
     ),
   ], child: MyApp()));
 }
