@@ -115,12 +115,23 @@ class _OrdersScreenState extends State<OrdersScreen> {
                     children: [
                         Text(
                     "Discount: " + context.read<OrdersController>().discountType!, 
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 18,  fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(width: 10),
+                  SizedBox(width: 5,),
+                   Text(
+                     context.read<OrdersController>().discountType, 
+                    style: TextStyle(fontSize: 18, color: Colors.green, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(width: 10,),
+                 
                        Text(
                     "Discount Value: " +  context.read<OrdersController>().discountValue, 
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                   SizedBox(width: 5),
+                       Text(
+                      context.read<OrdersController>().discountValue, 
+                    style: TextStyle(fontSize: 18, color: Colors.green, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(width: 10),
                   Text(

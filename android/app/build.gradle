@@ -5,7 +5,6 @@ if (localPropertiesFile.exists()) {
         localProperties.load(reader)
     }
 }
-
 def flutterRoot = localProperties.getProperty('flutter.sdk')
 if (flutterRoot == null) {
     throw new GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
@@ -26,8 +25,12 @@ apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
-    compileSdkVersion 31
     ndkVersion '22.1.7171670'
+
+    namespace "com.example.ecommerce_admin_panel"
+    compileSdk 34// <-- thêm dòng này
+
+
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -47,8 +50,10 @@ android {
         applicationId "com.example.ecommerce_admin_panel"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-build-configuration.
-        minSdkVersion 19
-        targetSdkVersion 31
+
+        minSdkVersion 23  // ← Sửa chỗ này từ 19 thành 21
+        multiDexEnabled true
+        versionName "1.0"
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
@@ -57,7 +62,7 @@ android {
         release {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
-             signingConfig signingConfigs.release
+//             signingConfig signingConfigs.release
         minifyEnabled false
         shrinkResources false
         }
@@ -69,5 +74,6 @@ flutter {
 }
 
 dependencies {
+
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
